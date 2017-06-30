@@ -16,6 +16,7 @@ import com.koushikdutta.ion.Ion;
 import cn.edu.nju.bedisdover.gitlabassistant.R;
 import cn.edu.nju.bedisdover.gitlabassistant.model.Student;
 import cn.edu.nju.bedisdover.gitlabassistant.model.Teacher;
+import cn.edu.nju.bedisdover.gitlabassistant.model.Utils;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -82,7 +83,7 @@ public class LoginActivity extends AppCompatActivity {
         params.addProperty("password", mPassword);
 
         Ion.with(this)
-                .load("/user/auth")
+                .load(Utils.BASE_URL + "/user/auth")
                 .setJsonObjectBody(params)
                 .asJsonObject()
                 .setCallback((e, result) -> {
