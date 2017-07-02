@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -16,7 +15,7 @@ import com.koushikdutta.ion.Ion;
 import cn.edu.nju.bedisdover.gitlabassistant.R;
 import cn.edu.nju.bedisdover.gitlabassistant.model.Student;
 import cn.edu.nju.bedisdover.gitlabassistant.model.Teacher;
-import cn.edu.nju.bedisdover.gitlabassistant.model.Utils;
+import cn.edu.nju.bedisdover.gitlabassistant.view.MyApplication;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -83,7 +82,7 @@ public class LoginActivity extends AppCompatActivity {
         params.addProperty("password", mPassword);
 
         Ion.with(this)
-                .load(Utils.BASE_URL + "/user/auth")
+                .load(MyApplication.BASE_URL + "/user/auth")
                 .setJsonObjectBody(params)
                 .asJsonObject()
                 .setCallback((e, result) -> {

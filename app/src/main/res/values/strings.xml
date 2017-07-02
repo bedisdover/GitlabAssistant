@@ -1,6 +1,9 @@
 <resources>
-    <string name="app_name">GitlabAssistant</string>
+    <string name="app_name">Gitlab助手</string>
     <string name="username">用户名</string>
     <string name="password">密码</string>
     <string name="login">登 录</string>
+    <string name="label_homework">作业</string>
+    <string name="label_exercise">练习</string>
+    <string name="label_exam">考试</string>
 </resources>
