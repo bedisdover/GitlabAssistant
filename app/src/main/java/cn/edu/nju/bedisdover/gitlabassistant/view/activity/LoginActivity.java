@@ -63,8 +63,8 @@ public class LoginActivity extends Activity {
         String password = et_password.getText().toString();
 
 //        username = "nanguangtailang";
-//        username = "liuqin";
-//        password = "123";
+//        String username = "liuqin";
+//        String password = "123";
 
         if ("".equals(username)) {
             til_username.setError("用户名不能为空");

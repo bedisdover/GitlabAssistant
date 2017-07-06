@@ -14,8 +14,11 @@ import cn.edu.nju.bedisdover.gitlabassistant.view.MyApplication;
 import cn.edu.nju.bedisdover.gitlabassistant.view.adapter.StudentAdapter;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
+import com.google.gson.reflect.TypeToken;
 import com.koushikdutta.ion.Ion;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ScoreActivity extends AppCompatActivity {
 
@@ -24,8 +27,6 @@ public class ScoreActivity extends AppCompatActivity {
 
     @BindView(R.id.lv_score)
     ListView lv_score;
-
-    private Item mItem;
 
     private Score[] mScores;
 
@@ -42,7 +43,7 @@ public class ScoreActivity extends AppCompatActivity {
     }
 
     private void init() {
-        mItem = (Item) getIntent().getSerializableExtra("item");
+        Item mItem = (Item) getIntent().getSerializableExtra("item");
 
         toolbar.setTitle(mItem.getTitle());
         setSupportActionBar(toolbar);
@@ -51,7 +52,7 @@ public class ScoreActivity extends AppCompatActivity {
 
     private void loadData() {
         Ion.with(this)
-                .load(MyApplication.BASE_URL + "/assignment/" + mItem.getId() + "/score")
+                .load(MyApplication.BASE_URL + "/assignment/" + 12 + "/score")
                 .setHeader("Authorization", MyApplication.getToken())
                 .asJsonObject()
                 .setCallback((e, result) -> {
@@ -63,13 +64,15 @@ public class ScoreActivity extends AppCompatActivity {
                             return;
                         }
 
-                        JsonElement scores = questions.get(0).getAsJsonObject().get("students");
-                        if (scores == null) {
-                            Toast.makeText(this, "无数据", Toast.LENGTH_SHORT).show();
-                            return;
+                        List<Score> scoreList = new ArrayList<>();
+                        Gson gson = new Gson();
+                        for (int i = 0; i < questions.size(); i++) {
+                            scoreList.addAll(gson.fromJson(questions.get(i).getAsJsonObject().get("students"), new TypeToken<List<Score>>() {
+                            }.getType()));
                         }
 
-                        mScores = new Gson().fromJson(scores, Score[].class);
+                        mScores = new Score[scoreList.size()];
+                        mScores = scoreList.toArray(mScores);
 
                         lv_score.setAdapter(new StudentAdapter(ScoreActivity.this, mScores));
                     }
