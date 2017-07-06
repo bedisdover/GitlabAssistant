@@ -8,9 +8,7 @@ import android.view.MenuItem;
 
 import cn.edu.nju.bedisdover.gitlabassistant.R;
 import cn.edu.nju.bedisdover.gitlabassistant.view.adapter.ViewPagerAdapter;
-import cn.edu.nju.bedisdover.gitlabassistant.view.fragment.student.ExamFragment;
-import cn.edu.nju.bedisdover.gitlabassistant.view.fragment.student.ExerciseFragment;
-import cn.edu.nju.bedisdover.gitlabassistant.view.fragment.student.HomeWorkFragment;
+import cn.edu.nju.bedisdover.gitlabassistant.view.fragment.StudentFragment;
 
 public class StudentActivity extends AppCompatActivity {
 
@@ -43,7 +41,7 @@ public class StudentActivity extends AppCompatActivity {
                     viewPager.setCurrentItem(1);
                     break;
                 case R.id.tab_menu_exam:
-                    viewPager.setCurrentItem(3);
+                    viewPager.setCurrentItem(2);
                     break;
             }
             return false;
@@ -76,9 +74,9 @@ public class StudentActivity extends AppCompatActivity {
 
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
 
-        adapter.addFragment(new HomeWorkFragment());
-        adapter.addFragment(new ExerciseFragment());
-        adapter.addFragment(new ExamFragment());
+        adapter.addFragment(new StudentFragment("/course/2/homework"));
+        adapter.addFragment(new StudentFragment("/course/2/exercise"));
+        adapter.addFragment(new StudentFragment("/course/2/exam"));
 
         viewPager.setAdapter(adapter);
     }

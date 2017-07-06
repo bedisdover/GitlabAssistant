@@ -1,23 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="cn.edu.nju.bedisdover.gitlabassistant">
+          package="cn.edu.nju.bedisdover.gitlabassistant">
 
     <application
-        android:name=".view.MyApplication"
-        android:allowBackup="true"
-        android:icon="@mipmap/gitlab"
-        android:label="@string/app_name"
-        android:roundIcon="@mipmap/gitlab"
-        android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".view.activity.LoginActivity"></activity>
-        <activity android:name=".view.activity.TeacherActivity" />
-        <activity android:name=".view.activity.StudentActivity">
+            android:name=".view.MyApplication"
+            android:allowBackup="true"
+            android:icon="@mipmap/gitlab"
+            android:label="@string/app_name"
+            android:supportsRtl="true"
+            android:theme="@style/AppTheme">
+        <activity android:name=".view.activity.LoginActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+        </activity>
+        <activity android:name=".view.activity.TeacherActivity"/>
+        <activity android:name=".view.activity.StudentActivity">
+        </activity>
+        <activity android:name=".view.activity.AnalyseActivity">
+        </activity>
+        <activity android:name=".view.activity.QuestionActivity">
+        </activity>
+        <activity android:name=".view.activity.GroupActivity">
+        </activity>
+        <activity android:name=".view.activity.ScoreActivity">
         </activity>
     </application>
 

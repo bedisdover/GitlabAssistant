@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+            android:id="@+id/tab_menu_class"
+            android:icon="@drawable/ic_group_24dp"
+            android:title="@string/label_class"/>
+    <item
+            android:id="@+id/tab_menu_homework"
+            android:icon="@drawable/ic_assignment_24dp"
+            android:title="@string/label_homework"/>
+    <item
+            android:id="@+id/tab_menu_exercise"
+            android:icon="@drawable/ic_exercise_24dp"
+            android:title="@string/label_exercise"/>
+    <item
+            android:id="@+id/tab_menu_exam"
+            android:icon="@drawable/ic_exam_24dp"
+            android:title="@string/label_exam"/>
+</menu>

@@ -1,51 +1,46 @@
 package cn.edu.nju.bedisdover.gitlabassistant.view.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
-import android.support.v7.app.AppCompatActivity;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import com.koushikdutta.ion.Ion;
-
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import cn.edu.nju.bedisdover.gitlabassistant.R;
 import cn.edu.nju.bedisdover.gitlabassistant.model.Student;
 import cn.edu.nju.bedisdover.gitlabassistant.model.Teacher;
 import cn.edu.nju.bedisdover.gitlabassistant.view.MyApplication;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.koushikdutta.ion.Ion;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends Activity {
 
-    private TextInputLayout til_username, til_password;
+    @BindView(R.id.til_username)
+    TextInputLayout til_username;
 
-    private EditText et_username, et_password;
+    @BindView(R.id.til_password)
+    TextInputLayout til_password;
 
-    private Button btn_login;
+    @BindView(R.id.et_username)
+    EditText et_username;
 
-    private String mUsername, mPassword;
+    @BindView(R.id.et_password)
+    EditText et_password;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        createView();
-        addListeners();
-    }
-
-    private void createView() {
-        til_username = (TextInputLayout) findViewById(R.id.til_username);
-        til_password = (TextInputLayout) findViewById(R.id.til_password);
-
-        et_username = (EditText) findViewById(R.id.et_username);
-        et_password = (EditText) findViewById(R.id.et_password);
+        ButterKnife.bind(this);
 
         et_username.clearFocus();
 
-        btn_login = (Button) findViewById(R.id.btn_login);
+        addListeners();
     }
 
     private void addListeners() {
@@ -60,26 +55,29 @@ public class LoginActivity extends AppCompatActivity {
                 til_password.setErrorEnabled(false);
             }
         });
-
-        btn_login.setOnClickListener(e -> login());
     }
 
-    private void login() {
-        mUsername = et_username.getText().toString();
-        mPassword = et_password.getText().toString();
+    @OnClick(R.id.btn_login)
+    void login() {
+        String username = et_username.getText().toString();
+        String password = et_password.getText().toString();
 
-        if ("".equals(mUsername)) {
+//        username = "nanguangtailang";
+//        username = "liuqin";
+//        password = "123";
+
+        if ("".equals(username)) {
             til_username.setError("用户名不能为空");
         }
 
-        if ("".equals(mPassword)) {
+        if ("".equals(password)) {
             til_password.setError("密码不能为空");
             return;
         }
 
         JsonObject params = new JsonObject();
-        params.addProperty("username", mUsername);
-        params.addProperty("password", mPassword);
+        params.addProperty("username", username);
+        params.addProperty("password", password);
 
         Ion.with(this)
                 .load(MyApplication.BASE_URL + "/user/auth")
@@ -88,6 +86,8 @@ public class LoginActivity extends AppCompatActivity {
                 .setCallback((e, result) -> {
                     if (result != null) {
                         handleResult(result);
+
+                        MyApplication.AUTH = username + ":" + password;
                     }
                 });
     }

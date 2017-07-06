@@ -32,4 +32,13 @@ public class Student extends User implements Serializable {
     public String getGitUsername() {
         return gitUsername;
     }
+
+    @Override
+    public String toString() {
+        return super.toString() +
+                "\ngitId: " + gitId +
+                "\nnumber: '" + number + '\'' +
+                "\ngroupId: " + groupId +
+                "\ngitUsername: '" + gitUsername + '\'';
+    }
 }

@@ -7,7 +7,7 @@ import java.io.Serializable;
  *
  * User 对象
  */
-public abstract class User implements Serializable {
+public class User implements Serializable {
 
     private int id;
 
@@ -55,5 +55,17 @@ public abstract class User implements Serializable {
 
     public int getSchoolId() {
         return schoolId;
+    }
+
+    @Override
+    public String toString() {
+        return "id: " + id +
+                "\nusername: " + username + '\'' +
+                "\nname: " + name + '\'' +
+                "\ntype: " + type + '\'' +
+                "\navatar: " + avatar + '\'' +
+                "\ngender: " + gender + '\'' +
+                "\nemail: " + email + '\'' +
+                "\nschoolId:  " + schoolId;
     }
 }
